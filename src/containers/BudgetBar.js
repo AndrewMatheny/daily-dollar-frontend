@@ -46,18 +46,25 @@ export default class BudgetBar extends React.Component {
 
     calculateSpent = () => {
         let transactions = this.matchTransactionDate()
-        console.log(transactions)
+        let spent = transactions.map(transaction => {
+            return parseFloat(transaction.amount)
+        })
+        //array of all amounts
+        console.log(spent)
+        let totalSpent = spent.reduce((a,b) => a + b, 0).toFixed(2)
+        console.log("TOTAL SPENT", totalSpent)
+        return totalSpent
     }
 
     render() {
         // console.log(this.props.budget)
-        this.calculateSpent()
+        let spend = this.calculateSpent()
         return (
             <div style={{color: "white", textAlign: "center"}}>
                 <br></br>
                 <br></br>
                 <h1>{this.props.budget.name} Daily Budget</h1>
-                <h1>Spent / {((this.props.budget.limit)/30.4).toFixed(2)}</h1>
+                <h1>{spend} / {((this.props.budget.limit)/30.4).toFixed(2)}</h1>
             </div>
         )
     }
