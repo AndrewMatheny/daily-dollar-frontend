@@ -1,10 +1,11 @@
 import React from 'react';
-// import logo from './logo.svg';
-import './App.css';
+import logo from './images/DailyDollarNoBack.png';
+import './style.css';
 import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
 import { Menu } from 'semantic-ui-react'
 import FacebookLogin from 'react-facebook-login';
 import GoogleLogin from 'react-google-login';
+
 
 
 class App extends React.Component {
@@ -70,9 +71,15 @@ class App extends React.Component {
     }
 
     return (
-      <div className="App">
-        <h1>Daily Dollar</h1>
-        <h2>Login with Google or Facebook</h2>
+      <div className="App" style={{textAlign: "center"}}>
+        <br></br>
+        <br></br>
+        {/* <h1>Daily Dollar</h1> */}
+        <img className="mainLogo" src={logo} alt="Daily Dollar Logo"></img>
+        {/* <h2>Login with Google or Facebook</h2> */}
+
+        <br></br>
+        <br></br>
 
       <FacebookLogin
         appId="585146412339575"
