@@ -16,6 +16,14 @@ class App extends React.Component {
 
   render() {
 
+    const setUserStates = (data) => {
+      this.setState({
+        name: data.name,
+        email: data.email,
+        outId: data.indiv
+      })
+    }
+
     const responseFacebook = (res) => {
       console.log(res);
       console.log(res.name)
@@ -32,7 +40,7 @@ class App extends React.Component {
           email: res.email
         })
       }).then(res => res.json())
-      .then(console.log)
+      .then(data => setUserStates(data))
     }
 
     const responseGoogle = (res) => {
@@ -51,7 +59,7 @@ class App extends React.Component {
           email: res.profileObj.email
         })
       }).then(res => res.json())
-      .then(console.log)
+      .then(data => setUserStates(data))
     }
     
     const responseGoogleFailure = (response) => {
