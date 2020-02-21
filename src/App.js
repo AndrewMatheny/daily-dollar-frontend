@@ -1,7 +1,8 @@
 import React from 'react';
 // import logo from './logo.svg';
 import './App.css';
-
+import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
+import { Menu } from 'semantic-ui-react'
 import FacebookLogin from 'react-facebook-login';
 import GoogleLogin from 'react-google-login';
 
@@ -11,7 +12,8 @@ class App extends React.Component {
   state = {
     name: "",
     email: "",
-    outId: ""
+    outId: "",
+    loggedIn: false
   }
 
   render() {
