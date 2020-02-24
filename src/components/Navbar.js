@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Menu } from 'semantic-ui-react'
-import {Redirect, Link} from 'react-router-dom'
+// import {Redirect, Link} from 'react-router-dom'
 
 export default class NavBar extends Component {
   state = { activeItem: '' }
@@ -18,13 +18,6 @@ export default class NavBar extends Component {
   //     return (
   //       <Redirect to="/" />
   //     )
-  // }
-  // handleItemClick = () => {
-  //   if(this.state.activeItem === 'daily') {
-  //     return (
-  //       <Redirect to="/daily"></Redirect>
-  //     )
-  //   }
   // }
 
   render() {
@@ -67,7 +60,7 @@ export default class NavBar extends Component {
 			      
               name='logout'
               active={activeItem === 'logout'}
-              onClick={this.handleLogout}
+              onClick={this.handleItemClick}
             />
           </Menu.Menu>
         </Menu>

@@ -2,7 +2,7 @@ import React from 'react';
 import logo from './images/DailyDollarNoBack.png';
 import './style.css';
 import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
-import { Menu } from 'semantic-ui-react'
+// import { Menu } from 'semantic-ui-react'
 import FacebookLogin from 'react-facebook-login';
 import GoogleLogin from 'react-google-login';
 import NavBar from './components/Navbar'
