@@ -8,6 +8,9 @@ import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
 import NavBar from './components/Navbar'
 import Home from './components/Home'
 import LoginContainer from './containers/LoginContainer'
+import DailyContainer from './containers/DailyContainer'
+import MonthlyContainer from './containers/MonthlyContainer';
+import CreateBudgetContainer from './containers/CreateBudgetContainer';
 
 
 
@@ -18,7 +21,7 @@ export default class App extends React.Component {
     name: "",
     email: "",
     outId: "",
-    loggedIn: false
+    loggedIn: true
     }
 
     //hard-coded logged in to true to avoid logging in constantly during testing
@@ -34,49 +37,6 @@ export default class App extends React.Component {
       })
     }
 
-    // responseFacebook = (res) => {
-    //   console.log(res);
-    //   console.log(res.name)
-    //   console.log(res.email)
-    //   console.log(res.userID)
-    //   fetch(`http:localhost:3000/users`, {
-    //     method: "POST",
-    //     headers: {
-    //       "Content-Type": "application/json"
-    //     },
-    //     body: JSON.stringify({
-    //       indiv: res.userID,
-    //       name: res.name,
-    //       email: res.email
-    //     })
-    //   }).then(res => res.json())
-    //   .then(data => this.setUserStates(data))
-    // }
-
-    // responseGoogle = (res) => {
-    //   console.log(res);
-    //   console.log(res.profileObj.name)
-    //   console.log(res.profileObj.email)
-    //   console.log(res.googleId)
-    //   fetch(`http:localhost:3000/users`, {
-    //     method: "POST",
-    //     headers: {
-    //       "Content-Type": "application/json"
-    //     },
-    //     body: JSON.stringify({
-    //       indiv: res.googleId,
-    //       name: res.profileObj.name,
-    //       email: res.profileObj.email
-    //     })
-    //   }).then(res => res.json())
-    //   .then(data => this.setUserStates(data))
-    // }
-    
-    // responseGoogleFailure = (response) => {
-    //   alert("Login Failed - Please try again")
-    //   console.log("LOGIN FAILED : ", response)
-    // }
-
     navigation = () => {
       if(this.state.loggedIn) {
         return (
@@ -88,12 +48,18 @@ export default class App extends React.Component {
                 exact
                 render={props => <Home {...props} />}/>
 
-              {/* <div className="App" style={{textAlign: "center"}}>
-              <br></br>
-              <br></br>
-              <img className="mainLogo" src={logo} alt="Daily Dollar Logo"></img> */}
-              {/* </div> */}
-
+              <Route
+                path="/daily"
+                render={props => <DailyContainer {...props} />}
+                />
+              <Route
+                path="/monthly"
+                render={props => <MonthlyContainer {...props} />}
+              />
+              <Route
+                path="/createbudget"
+                render={props => <CreateBudgetContainer {...props} />}
+              />
             </Router>
           </div>
         )

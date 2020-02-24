@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Menu } from 'semantic-ui-react'
-// import {Redirect, Link} from 'react-router-dom'
+import {NavLink} from 'react-router-dom'
 
 export default class NavBar extends Component {
   state = { activeItem: '' }
@@ -32,16 +32,17 @@ export default class NavBar extends Component {
             active={activeItem === 'home'}
             onClick={this.handleItemClick}
           /> */}
-
           <Menu.Item style={this.style}
-		  	  
+            as={NavLink}
+            to="/daily"
             name='daily'
             active={activeItem === 'daily'}
             onClick={this.handleItemClick}
           />
 
           <Menu.Item style={this.style}
-		  	  
+            as={NavLink}
+            to="/monthly"
             name='monthly'
             active={activeItem === 'monthly'}
             onClick={this.handleItemClick}
@@ -50,7 +51,8 @@ export default class NavBar extends Component {
           <Menu.Menu position='right'>
 
             <Menu.Item style={this.style}
-              
+              as={NavLink}
+              to="/createbudget"
               name='create a budget'
               active={activeItem === 'create a budget'}
               onClick={this.handleItemClick}
