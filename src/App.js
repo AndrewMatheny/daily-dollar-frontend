@@ -21,12 +21,19 @@ export default class App extends React.Component {
     name: "",
     email: "",
     outId: "",
-    loggedIn: true
+    loggedIn: false
     }
 
     //hard-coded logged in to true to avoid logging in constantly during testing
 
- 
+    logout = () => {
+      this.setState({
+        name: "",
+        email: "",
+        outId: "",
+        loggedIn: false
+      })
+    }
 
     setUserStates = (data) => {
       this.setState({
@@ -42,7 +49,7 @@ export default class App extends React.Component {
         return (
           <div>
             <Router>
-              <NavBar />
+              <NavBar logout={this.logout}/>
               <Route 
                 path="/"
                 exact

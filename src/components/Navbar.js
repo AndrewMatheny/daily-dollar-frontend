@@ -62,7 +62,7 @@ export default class NavBar extends Component {
 			      
               name='logout'
               active={activeItem === 'logout'}
-              onClick={this.handleItemClick}
+              onClick={this.props.logout}
             />
           </Menu.Menu>
         </Menu>
