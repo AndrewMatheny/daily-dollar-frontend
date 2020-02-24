@@ -5,6 +5,8 @@ import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
 import { Menu } from 'semantic-ui-react'
 import FacebookLogin from 'react-facebook-login';
 import GoogleLogin from 'react-google-login';
+import NavBar from './components/Navbar'
+
 
 
 
@@ -71,32 +73,35 @@ class App extends React.Component {
     }
 
     return (
-      <div className="App" style={{textAlign: "center"}}>
-        <br></br>
-        <br></br>
-        {/* <h1>Daily Dollar</h1> */}
-        <img className="mainLogo" src={logo} alt="Daily Dollar Logo"></img>
-        {/* <h2>Login with Google or Facebook</h2> */}
+      <div>
+        <NavBar />
+        <div className="App" style={{textAlign: "center"}}>
+          <br></br>
+          <br></br>
+          {/* <h1>Daily Dollar</h1> */}
+          <img className="mainLogo" src={logo} alt="Daily Dollar Logo"></img>
+          {/* <h2>Login with Google or Facebook</h2> */}
 
-        <br></br>
-        <br></br>
+          <br></br>
+          <br></br>
 
-      <FacebookLogin
-        appId="585146412339575"
-        fields="name,email,picture"
-        callback={responseFacebook}
-      />
-      <br />
-      <br />
+        <FacebookLogin
+          appId="585146412339575"
+          fields="name,email,picture"
+          callback={responseFacebook}
+        />
+        <br />
+        <br />
 
 
-      <GoogleLogin
-        clientId="1003783796325-kaolh7f7iul1uph6nt6hulv0mb5ami75.apps.googleusercontent.com"
-        buttonText="LOGIN WITH GOOGLE"
-        onSuccess={responseGoogle}
-        onFailure={responseGoogleFailure}
-      />
+        <GoogleLogin
+          clientId="1003783796325-kaolh7f7iul1uph6nt6hulv0mb5ami75.apps.googleusercontent.com"
+          buttonText="LOGIN WITH GOOGLE"
+          onSuccess={responseGoogle}
+          onFailure={responseGoogleFailure}
+        />
 
+        </div>
       </div>
     );
   }
