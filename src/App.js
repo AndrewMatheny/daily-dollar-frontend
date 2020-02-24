@@ -10,26 +10,29 @@ import NavBar from './components/Navbar'
 
 
 
-class App extends React.Component {
+export default class App extends React.Component {
 
   state = {
     name: "",
     email: "",
     outId: "",
-    loggedIn: false
-  }
+    loggedIn: true
+    }
 
-  render() {
+    //hard-coded logged in to true to avoid logging in constantly during testing
 
-    const setUserStates = (data) => {
+ 
+
+    setUserStates = (data) => {
       this.setState({
         name: data.name,
         email: data.email,
-        outId: data.indiv
+        outId: data.indiv,
+        loggedIn: true
       })
     }
 
-    const responseFacebook = (res) => {
+    responseFacebook = (res) => {
       console.log(res);
       console.log(res.name)
       console.log(res.email)
@@ -45,10 +48,10 @@ class App extends React.Component {
           email: res.email
         })
       }).then(res => res.json())
-      .then(data => setUserStates(data))
+      .then(data => this.setUserStates(data))
     }
 
-    const responseGoogle = (res) => {
+    responseGoogle = (res) => {
       console.log(res);
       console.log(res.profileObj.name)
       console.log(res.profileObj.email)
@@ -64,48 +67,70 @@ class App extends React.Component {
           email: res.profileObj.email
         })
       }).then(res => res.json())
-      .then(data => setUserStates(data))
+      .then(data => this.setUserStates(data))
     }
     
-    const responseGoogleFailure = (response) => {
+    responseGoogleFailure = (response) => {
       alert("Login Failed")
       console.log("LOGIN FAILED : ", response)
     }
 
+    navigation = () => {
+      if(this.state.loggedIn) {
+        return (
+          <div>
+            <NavBar />
+            <div className="App" style={{textAlign: "center"}}>
+            <br></br>
+            <br></br>
+            {/* <h1>Daily Dollar</h1> */}
+            <img className="mainLogo" src={logo} alt="Daily Dollar Logo"></img>
+            {/* <h2>Login with Google or Facebook</h2> */}
+            </div>
+          </div>
+        )
+      }
+      else {
+        return (
+          <div>
+
+            <div className="App" style={{textAlign: "center"}}>
+              <br></br>
+              <br></br>
+              {/* <h1>Daily Dollar</h1> */}
+              <img className="mainLogo" src={logo} alt="Daily Dollar Logo"></img>
+              {/* <h2>Login with Google or Facebook</h2> */}
+            
+
+            <br></br>
+            <br></br>
+      
+              <FacebookLogin
+                appId="585146412339575"
+                fields="name,email,picture"
+                callback={this.responseFacebook}
+              />
+              <br />
+              <br />
+      
+      
+              <GoogleLogin
+                clientId="1003783796325-kaolh7f7iul1uph6nt6hulv0mb5ami75.apps.googleusercontent.com"
+                buttonText="LOGIN WITH GOOGLE"
+                onSuccess={this.responseGoogle}
+                onFailure={this.responseGoogleFailure}
+              />
+            </div>
+          </div>
+        )
+      }
+    }
+    
+  render() {
     return (
       <div>
-        <NavBar />
-        <div className="App" style={{textAlign: "center"}}>
-          <br></br>
-          <br></br>
-          {/* <h1>Daily Dollar</h1> */}
-          <img className="mainLogo" src={logo} alt="Daily Dollar Logo"></img>
-          {/* <h2>Login with Google or Facebook</h2> */}
-
-          <br></br>
-          <br></br>
-
-        <FacebookLogin
-          appId="585146412339575"
-          fields="name,email,picture"
-          callback={responseFacebook}
-        />
-        <br />
-        <br />
-
-
-        <GoogleLogin
-          clientId="1003783796325-kaolh7f7iul1uph6nt6hulv0mb5ami75.apps.googleusercontent.com"
-          buttonText="LOGIN WITH GOOGLE"
-          onSuccess={responseGoogle}
-          onFailure={responseGoogleFailure}
-        />
-
-        </div>
+        {this.navigation()}
       </div>
     );
-  }
-
+  };
 }
-
-export default App;

@@ -3,7 +3,7 @@ import { Menu } from 'semantic-ui-react'
 import {Redirect, Link} from 'react-router-dom'
 
 export default class NavBar extends Component {
-  state = { activeItem: 'home' }
+  state = { activeItem: '' }
 
   handleItemClick = (e, { name }) => this.setState({ activeItem: name })
 
@@ -19,6 +19,13 @@ export default class NavBar extends Component {
   //       <Redirect to="/" />
   //     )
   // }
+  // handleItemClick = () => {
+  //   if(this.state.activeItem === 'daily') {
+  //     return (
+  //       <Redirect to="/daily"></Redirect>
+  //     )
+  //   }
+  // }
 
   render() {
 	const { activeItem } = this.state
@@ -32,6 +39,7 @@ export default class NavBar extends Component {
             active={activeItem === 'home'}
             onClick={this.handleItemClick}
           /> */}
+
           <Menu.Item style={this.style}
 		  	  
             name='daily'
