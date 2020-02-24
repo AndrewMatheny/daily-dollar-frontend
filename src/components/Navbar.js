@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Menu } from 'semantic-ui-react'
-import {NavLink} from 'react-router-dom'
+import {NavLink, Redirect } from 'react-router-dom'
 
 export default class NavBar extends Component {
   state = { activeItem: '' }
@@ -59,7 +59,8 @@ export default class NavBar extends Component {
             />
 
             <Menu.Item style={this.style}
-			      
+              as={NavLink}
+              to="/"
               name='logout'
               active={activeItem === 'logout'}
               onClick={this.props.logout}
