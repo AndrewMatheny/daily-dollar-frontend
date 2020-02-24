@@ -6,6 +6,7 @@ import { Menu } from 'semantic-ui-react'
 import FacebookLogin from 'react-facebook-login';
 import GoogleLogin from 'react-google-login';
 import NavBar from './components/Navbar'
+import Home from './components/Home'
 
 
 
@@ -79,14 +80,20 @@ export default class App extends React.Component {
       if(this.state.loggedIn) {
         return (
           <div>
-            <NavBar />
-            <div className="App" style={{textAlign: "center"}}>
-            <br></br>
-            <br></br>
-            {/* <h1>Daily Dollar</h1> */}
-            <img className="mainLogo" src={logo} alt="Daily Dollar Logo"></img>
-            {/* <h2>Login with Google or Facebook</h2> */}
-            </div>
+            <Router>
+              <NavBar />
+              <Route 
+                path="/"
+                exact
+                render={props => <Home {...props} />}/>
+
+              {/* <div className="App" style={{textAlign: "center"}}>
+              <br></br>
+              <br></br>
+              <img className="mainLogo" src={logo} alt="Daily Dollar Logo"></img> */}
+              {/* </div> */}
+
+            </Router>
           </div>
         )
       }
@@ -99,7 +106,7 @@ export default class App extends React.Component {
               <br></br>
               {/* <h1>Daily Dollar</h1> */}
               <img className="mainLogo" src={logo} alt="Daily Dollar Logo"></img>
-              {/* <h2>Login with Google or Facebook</h2> */}
+              <h2 style={{color: "white"}}>Login with Google or Facebook</h2>
             
 
             <br></br>
