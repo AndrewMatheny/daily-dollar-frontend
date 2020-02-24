@@ -2,4 +2,7 @@
     width: 200px
 }
 
-body {background-color: #1E1E1E;}
+body {
+    background-color: #1E1E1E !important;
+    /* color: #A7A7A9 !important */
+}

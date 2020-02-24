@@ -2,16 +2,15 @@ import React, { Component } from 'react'
 import { Menu } from 'semantic-ui-react'
 import {Redirect, Link} from 'react-router-dom'
 
-// let background = 'https://www.smartertravel.com/uploads/2017/06/road_trip_tips_hero-1400x500.jpg'
-
 export default class NavBar extends Component {
   state = { activeItem: 'home' }
 
   handleItemClick = (e, { name }) => this.setState({ activeItem: name })
 
   style = {
-  color: "white",
-  fontSize: "1.25em"
+  color: "#A7A7A9",
+  // borderBottomColor: "#A7A7A9",
+  backgroundColor: "#494949"
   }
 
   // handleLogout = () => {
@@ -26,23 +25,37 @@ export default class NavBar extends Component {
 	
     return (
       <div>
-        <Menu pointing secondary>
+        <Menu pointing secondary style={this.style}>
           {/* <Menu.Item
 		  	  
             name='home'
             active={activeItem === 'home'}
             onClick={this.handleItemClick}
           /> */}
-          <Menu.Item
+          <Menu.Item style={this.style}
 		  	  
             name='daily'
             active={activeItem === 'daily'}
             onClick={this.handleItemClick}
           />
+
+          <Menu.Item style={this.style}
+		  	  
+            name='monthly'
+            active={activeItem === 'monthly'}
+            onClick={this.handleItemClick}
+          />
           
           <Menu.Menu position='right'>
 
-            <Menu.Item
+            <Menu.Item style={this.style}
+              
+              name='create a budget'
+              active={activeItem === 'create a budget'}
+              onClick={this.handleItemClick}
+            />
+
+            <Menu.Item style={this.style}
 			      
               name='logout'
               active={activeItem === 'logout'}
