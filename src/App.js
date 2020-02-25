@@ -1,10 +1,7 @@
 import React from 'react';
 // import logo from './images/DailyDollarNoBack.png';
 import './style.css';
-import { BrowserRouter as Router, Route } from "react-router-dom";
-// import { Menu } from 'semantic-ui-react'
-// import FacebookLogin from 'react-facebook-login';
-// import GoogleLogin from 'react-google-login';
+import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
 import NavBar from './components/Navbar'
 import Home from './components/Home'
 import LoginContainer from './containers/LoginContainer'
@@ -66,7 +63,7 @@ export default class App extends React.Component {
         email: data.email,
         outId: data.indiv,
         loggedIn: true
-      }, () => this.fetchBudgets(1))
+      }, () => this.fetchBudgets(1)) //hard coded to user 1 currently to have data to play with
     }
 
     
@@ -116,6 +113,7 @@ export default class App extends React.Component {
                 exact
                 render={props => <LoginContainer {...props} setUserStates={this.setUserStates}/>}
                 />
+                <Redirect to="/"/>
             </Router>
           </div>
         )
