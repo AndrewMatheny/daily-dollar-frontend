@@ -21,7 +21,8 @@ export default class App extends React.Component {
     outId: "",
     loggedIn: false,
     allBudgets: "",
-    dailyBudgets: ""
+    dailyBudgets: "",
+    currentDate: ""
     }
 
     //hard-coded logged in to true to avoid logging in constantly during testing
@@ -34,7 +35,19 @@ export default class App extends React.Component {
         outId: "",
         loggedIn: false,
         allBudgets: "",
-        dailyBudgets: ""
+        dailyBudgets: "",
+        currentDate: ""
+      })
+    }
+
+    setCurrentDate = () => {
+      let dateObj = new Date()
+      let year = dateObj.getFullYear()
+      let month = dateObj.getMonth() + 1
+      let day = dateObj.getDate()
+      let date = `${month} / ${day} / ${year}`
+      this.setState({
+          currentDate: date
       })
     }
 
@@ -49,6 +62,7 @@ export default class App extends React.Component {
       .then(data => this.setState({
         dailyBudgets: data
       }))
+      .then(this.setCurrentDate())
     }
 
     // fetchDailyBudgets = (userId) => {
@@ -85,11 +99,11 @@ export default class App extends React.Component {
 
               <Route
                 path="/daily"
-                render={props => <DailyContainer {...props} dailyBudgets={this.state.dailyBudgets}/>}
+                render={props => <DailyContainer {...props} dailyBudgets={this.state.dailyBudgets} currentDate={this.state.currentDate}/>}
                 />
               <Route
                 path="/monthly"
-                render={props => <MonthlyContainer {...props} allBudgets={this.state.allBudgets}/>}
+                render={props => <MonthlyContainer {...props} allBudgets={this.state.allBudgets} currentDate={this.state.currentDate}/>}
               />
               <Route
                 path="/addTransaction"

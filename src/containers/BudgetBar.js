@@ -2,10 +2,15 @@ import React from 'react'
 
 export default class BudgetBar extends React.Component {
 
+    
+
     render() {
+        console.log(this.props.budget)
         return (
-            <div>
-                <h1 style={{color: "white"}}>Card</h1>
+            <div style={{color: "white", textAlign: "center"}}>
+                <br></br>
+                <br></br>
+                <h1>Spent / {this.props.budget.limit}</h1>
             </div>
         )
     }
