@@ -41,13 +41,22 @@ export default class App extends React.Component {
       })
     }
 
-    fetchUsersBudgets = (userId) => {
+    fetchBudgets = (userId) => {
       fetch(`http://localhost:3000/userbudgets/${userId}`)
       .then(res => res.json())
       .then(data => this.setState({
         allBudgets: data
       }))
+      fetch(`http://localhost:3000/dailybudgets/${userId}`)
+      .then(res => res.json())
+      .then(data => this.setState({
+        dailyBudgets: data
+      }))
     }
+
+    // fetchDailyBudgets = (userId) => {
+      
+    // }
 
     setUserStates = (data) => {
       console.log(data)
@@ -57,7 +66,7 @@ export default class App extends React.Component {
         email: data.email,
         outId: data.indiv,
         loggedIn: true
-      })
+      }, () => this.fetchBudgets(1))
     }
 
     
@@ -65,7 +74,8 @@ export default class App extends React.Component {
     navigation = () => {
       if(this.state.loggedIn) {
         // this.fetchUsersBudgets(this.state.userId)
-        this.fetchUsersBudgets(1)
+        // this.fetchUsersBudgets(1)
+        // this.fetchDailyBudgets(1)
         //hard coded to 1 for now to get data to play with
         return (
           <div>
@@ -78,11 +88,11 @@ export default class App extends React.Component {
 
               <Route
                 path="/daily"
-                render={props => <DailyContainer {...props} />}
+                render={props => <DailyContainer {...props} dailyBudgets={this.state.dailyBudgets}/>}
                 />
               <Route
                 path="/monthly"
-                render={props => <MonthlyContainer {...props} />}
+                render={props => <MonthlyContainer {...props} allBudgets={this.state.allBudgets}/>}
               />
               <Route
                 path="/createbudget"
