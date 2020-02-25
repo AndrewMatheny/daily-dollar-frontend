@@ -11,7 +11,7 @@ import LoginContainer from './containers/LoginContainer'
 import DailyContainer from './containers/DailyContainer'
 import MonthlyContainer from './containers/MonthlyContainer';
 import CreateBudgetContainer from './containers/CreateBudgetContainer';
-
+import AddTransactionContainer from './containers/AddTransactionContainer'
 
 
 
@@ -93,6 +93,10 @@ export default class App extends React.Component {
               <Route
                 path="/monthly"
                 render={props => <MonthlyContainer {...props} allBudgets={this.state.allBudgets}/>}
+              />
+              <Route
+                path="/addTransaction"
+                render={props => <AddTransactionContainer {...props} />}
               />
               <Route
                 path="/createbudget"

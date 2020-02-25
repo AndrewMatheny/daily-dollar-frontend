@@ -50,6 +50,14 @@ export default class NavBar extends Component {
           
           <Menu.Menu position='right'>
 
+          <Menu.Item style={this.style}
+              as={NavLink}
+              to="/addtransaction"
+              name='add a transaction'
+              active={activeItem === 'add a transaction'}
+              onClick={this.handleItemClick}
+            />
+
             <Menu.Item style={this.style}
               as={NavLink}
               to="/createbudget"
