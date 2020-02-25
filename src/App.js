@@ -18,25 +18,41 @@ import CreateBudgetContainer from './containers/CreateBudgetContainer';
 export default class App extends React.Component {
 
   state = {
+    userId: "",
     name: "",
     email: "",
     outId: "",
-    loggedIn: false
+    loggedIn: false,
+    allBudgets: "",
+    dailyBudgets: ""
     }
 
     //hard-coded logged in to true to avoid logging in constantly during testing
 
     logout = () => {
       this.setState({
+        userId: "",
         name: "",
         email: "",
         outId: "",
-        loggedIn: false
+        loggedIn: false,
+        allBudgets: "",
+        dailyBudgets: ""
       })
     }
 
+    fetchUsersBudgets = (userId) => {
+      fetch(`http://localhost:3000/userbudgets/${userId}`)
+      .then(res => res.json())
+      .then(data => this.setState({
+        allBudgets: data
+      }))
+    }
+
     setUserStates = (data) => {
+      console.log(data)
       this.setState({
+        userId: data.id,
         name: data.name,
         email: data.email,
         outId: data.indiv,
@@ -44,8 +60,13 @@ export default class App extends React.Component {
       })
     }
 
+    
+
     navigation = () => {
       if(this.state.loggedIn) {
+        // this.fetchUsersBudgets(this.state.userId)
+        this.fetchUsersBudgets(1)
+        //hard coded to 1 for now to get data to play with
         return (
           <div>
             <Router>

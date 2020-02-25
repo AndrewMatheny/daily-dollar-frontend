@@ -1,6 +1,8 @@
 import React from 'react'
 
+
 export default class DailyContainer extends React.Component {
+
 
     render() {
         return (
