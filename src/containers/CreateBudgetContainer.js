@@ -3,12 +3,6 @@ import { Button, Form, Input, Checkbox, Container, Header } from 'semantic-ui-re
 
 export default class CreateBudgetContainer extends React.Component {
 
-//     render() {
-//         return (
-//             <h1 style={{color: "white"}}>CREATE BUDGET CONTAINER</h1>
-//         )
-//     }
-// }
  state = {
     check: false,
     name: "",
