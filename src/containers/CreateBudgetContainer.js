@@ -10,7 +10,9 @@ export default class CreateBudgetContainer extends React.Component {
 //     }
 // }
  state = {
-    check: false
+    check: false,
+    name: "",
+    limit: ""
  }
     
       handleChange = (e) => {
@@ -27,6 +29,12 @@ export default class CreateBudgetContainer extends React.Component {
 
       handleSubmit = (e) => {
         let formData = {name: this.state.name, limit: parseInt(this.state.limit), daily: this.state.check, user_id: this.props.userId}
+        this.setState({
+            check: false,
+            name: "",
+            limit: ""
+        })
+        alert("Budget Submitted")
         fetch(`http://localhost:3000/budgets`, {
             method: "POST",
             headers: {
@@ -40,17 +48,17 @@ export default class CreateBudgetContainer extends React.Component {
                 
             })
         }).then(res => res.json())
-        .then(console.log)
+        .then(data => this.props.updateBudgetState(data))
       }
 
 
       render() {
         return (
-        <Container style={{opacity: 0.9}}>
-        
-        <div className="ui raised segment" style={{margin: '40px', padding: '3rem'}}>
-          <Form onSubmit={(e) =>this.handleSubmit(e)}> 
-              <Header textAlign='center'>Add a Budget</Header>
+        <Container>
+        {/* style={{opacity: 0.9}} */}
+        <div style={{margin: '40px', padding: '3rem'}}>
+          <Form inverted onSubmit={(e) =>this.handleSubmit(e)}> 
+              <Header textAlign='center' style={{color: "White"}}>Add a Budget</Header>
               
             <Form.Group widths='equal'>
               <Form.Field
@@ -58,6 +66,7 @@ export default class CreateBudgetContainer extends React.Component {
                 name="name"
                 label='Name'
                 placeholder='Name of Budget'
+                value={this.state.name}
                 onChange={this.handleChange}
               />
     
@@ -68,6 +77,7 @@ export default class CreateBudgetContainer extends React.Component {
                 name="limit"
                 label='Budget Monthly Limit'
                 placeholder='Budget Monthly Limit ex: 1500 for $1500'
+                value={this.state.limit}
                 onChange={this.handleChange}
               />
             </Form.Group>

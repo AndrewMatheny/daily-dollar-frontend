@@ -65,6 +65,24 @@ export default class App extends React.Component {
       .then(this.setCurrentDate())
     }
 
+    updateBudgetState = (budgetObj) => {
+      let prevAll = this.state.allBudgets
+      let prevDaily = this.state.dailyBudgets
+      if(budgetObj.daily) {
+        prevAll.push(budgetObj)
+        prevDaily.push(budgetObj)
+        this.setState({
+          allBudgets: prevAll,
+          dailyBudgets: prevDaily
+        })
+      } else {
+        prevAll.push(this.state.allBudgets)
+        this.setState({
+          allBudgets: prevAll
+        })
+      }
+    }
+
     // fetchDailyBudgets = (userId) => {
       
     // }
@@ -111,7 +129,7 @@ export default class App extends React.Component {
               />
               <Route
                 path="/createbudget"
-                render={props => <CreateBudgetContainer {...props} userId={this.state.userId}/>}
+                render={props => <CreateBudgetContainer {...props} userId={this.state.userId} updateBudgetState={this.updateBudgetState}/>}
               />
             </Router>
           </div>
