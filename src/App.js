@@ -77,7 +77,7 @@ export default class App extends React.Component {
         email: data.email,
         outId: data.indiv,
         loggedIn: true
-      }, () => this.fetchBudgets(1)) //hard coded to user 1 currently to have data to play with
+      }, () => this.fetchBudgets(this.state.userId)) //hard coded to user 1 currently to have data to play with
     }
 
     
@@ -111,7 +111,7 @@ export default class App extends React.Component {
               />
               <Route
                 path="/createbudget"
-                render={props => <CreateBudgetContainer {...props} />}
+                render={props => <CreateBudgetContainer {...props} userId={this.state.userId}/>}
               />
             </Router>
           </div>
