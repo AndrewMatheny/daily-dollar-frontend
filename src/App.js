@@ -125,7 +125,7 @@ export default class App extends React.Component {
               />
               <Route
                 path="/addTransaction"
-                render={props => <AddTransactionContainer {...props} userId={this.state.userId} allBudgets={this.state.allBudgets}/>}
+                render={props => <AddTransactionContainer {...props} userId={this.state.userId} allBudgets={this.state.allBudgets} fetchBudgets={this.fetchBudgets}/>}
               />
               <Route
                 path="/createbudget"

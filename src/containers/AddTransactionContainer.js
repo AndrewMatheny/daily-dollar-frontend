@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button, Form, Input, Container, Header } from 'semantic-ui-react'
+import { Button, Form, Input, Container, Header, Dropdown } from 'semantic-ui-react'
 import DatePicker from "react-datepicker";
  
 import "react-datepicker/dist/react-datepicker.css";
@@ -12,7 +12,6 @@ export default class AddTransactionContainer extends React.Component {
     date: new Date(),
     budget: "",
     budgets: [],
-    // startDate: new Date()
  }
 
     componentDidMount() {
@@ -20,9 +19,9 @@ export default class AddTransactionContainer extends React.Component {
     }
 
     setBudgets = () => {
-        const options = []
+        let options = []
         this.props.allBudgets.forEach(budget => {
-            const optionObj = { key: `${budget.name}`, text: `${budget.name}`, value: budget.id}
+            let optionObj = { key: `${budget.name}`, text: `${budget.name}`, value: budget.id}
             options.push(optionObj)
         })
         this.setState({
@@ -43,11 +42,12 @@ export default class AddTransactionContainer extends React.Component {
           })
       }
 
-    //   handleBudgetChange = (e) => {
-    //     this.setState({
-    //         budget: e.target.value
-    //     })
-    //   }
+      handleBudgetChange = (e, value) => {
+          console.log(e.target)
+        this.setState({
+            budget: value.value
+        })
+      }
 
       handleSubmit = (e) => {
         let formData = {name: this.state.name, amount: parseFloat(this.state.amount), date: this.state.date, budget_id: this.state.budget, user_id: this.props.userId}
@@ -57,22 +57,24 @@ export default class AddTransactionContainer extends React.Component {
             date: "",
             budgetId: ""
         })
-        console.log(formData)
-        // alert("Transaction Submitted")
-        // fetch(`http://localhost:3000/transactions`, {
-        //     method: "POST",
-        //     headers: {
-        //         "Content-Type": "application/json"
-        //     },
-        //     body: JSON.stringify({
-        //         user_id: formData.user_id,
-        //         name: formData.name,
-        //         amount: formData.amount,
-        //         daily: formData.daily
+        // console.log(formData)
+        alert("Transaction Submitted")
+        fetch(`http://localhost:3000/transactions`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                user_id: formData.user_id,
+                name: formData.name,
+                amount: formData.amount,
+                date: formData.date,
+                budget_id: formData.budget_id
                 
-        //     })
-        // }).then(res => res.json())
-        // .then(data => this.props.updateBudgetState(data))
+            })
+        }).then(res => res.json())
+        // .then(console.log)
+            .then(data => this.props.fetchBudgets(data.user.id))
       }
 
 
@@ -111,12 +113,14 @@ export default class AddTransactionContainer extends React.Component {
                 />
             </Form.Group>
             <Form.Group>
-                <Form.Select
+                <Dropdown
                 fluid
                 label='Budget'
-                options={this.state.budgets}
+                selection
                 placeholder='Budget'
-                onChange={this.handleChange}
+                value={this.state.budget}
+                options={this.state.budgets}
+                onChange={this.handleBudgetChange}
                 />
             </Form.Group>
 
