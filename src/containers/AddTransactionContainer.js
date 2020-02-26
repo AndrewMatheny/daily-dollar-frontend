@@ -4,15 +4,31 @@ import DatePicker from "react-datepicker";
  
 import "react-datepicker/dist/react-datepicker.css";
 
-export default class CreateBudgetContainer extends React.Component {
+export default class AddTransactionContainer extends React.Component {
 
  state = {
     name: "",
     amount: "",
     date: new Date(),
-    budgetId: ""
+    budget: "",
+    budgets: [],
     // startDate: new Date()
  }
+
+    componentDidMount() {
+        this.setBudgets()
+    }
+
+    setBudgets = () => {
+        const options = []
+        this.props.allBudgets.forEach(budget => {
+            const optionObj = { key: `${budget.name}`, text: `${budget.name}`, value: budget.id}
+            options.push(optionObj)
+        })
+        this.setState({
+            budgets: options
+        })
+    }
     
       handleChange = (e) => {
           this.setState({
@@ -20,35 +36,43 @@ export default class CreateBudgetContainer extends React.Component {
           })
       }
 
+
       handleDateChange = date => {
           this.setState({
               date: date
           })
       }
 
+    //   handleBudgetChange = (e) => {
+    //     this.setState({
+    //         budget: e.target.value
+    //     })
+    //   }
+
       handleSubmit = (e) => {
-        let formData = {name: this.state.name, amount: parseFloat(this.state.amount), date: this.state.date, budget_id: this.state.budgetId, user_id: this.props.userId}
+        let formData = {name: this.state.name, amount: parseFloat(this.state.amount), date: this.state.date, budget_id: this.state.budget, user_id: this.props.userId}
         this.setState({
             name: "",
             amount: "",
             date: "",
             budgetId: ""
         })
-        alert("Transaction Submitted")
-        fetch(`http://localhost:3000/transactions`, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                user_id: formData.user_id,
-                name: formData.name,
-                amount: formData.amount,
-                daily: formData.daily
+        console.log(formData)
+        // alert("Transaction Submitted")
+        // fetch(`http://localhost:3000/transactions`, {
+        //     method: "POST",
+        //     headers: {
+        //         "Content-Type": "application/json"
+        //     },
+        //     body: JSON.stringify({
+        //         user_id: formData.user_id,
+        //         name: formData.name,
+        //         amount: formData.amount,
+        //         daily: formData.daily
                 
-            })
-        }).then(res => res.json())
-        .then(data => this.props.updateBudgetState(data))
+        //     })
+        // }).then(res => res.json())
+        // .then(data => this.props.updateBudgetState(data))
       }
 
 
@@ -84,6 +108,15 @@ export default class CreateBudgetContainer extends React.Component {
                 <DatePicker
                     selected={this.state.date}
                     onChange={this.handleDateChange}
+                />
+            </Form.Group>
+            <Form.Group>
+                <Form.Select
+                fluid
+                label='Budget'
+                options={this.state.budgets}
+                placeholder='Budget'
+                onChange={this.handleChange}
                 />
             </Form.Group>
 
