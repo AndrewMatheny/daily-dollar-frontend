@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Menu } from 'semantic-ui-react'
+import { Menu, Sticky } from 'semantic-ui-react'
 import { NavLink } from 'react-router-dom'
 
 export default class NavBar extends Component {
@@ -24,7 +24,7 @@ export default class NavBar extends Component {
 	const { activeItem } = this.state
 	
     return (
-      <div>
+      <Sticky>
         <Menu pointing secondary style={this.style}>
           {/* <Menu.Item
 		  	  
@@ -75,7 +75,7 @@ export default class NavBar extends Component {
             />
           </Menu.Menu>
         </Menu>
-      </div>
+      </Sticky>
     )
   }
 }
