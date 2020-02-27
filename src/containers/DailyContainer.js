@@ -28,6 +28,7 @@ export default class DailyContainer extends React.Component {
                 <br></br>
                 <br></br>
                 {this.showBudgets()}
+                <br></br>
             </div>
         )
     }
