@@ -1,4 +1,6 @@
 import React from 'react'
+import { Button } from 'semantic-ui-react'
+import TransactionTable from './TransactionTable'
 
 const currentDate = new Date()
 let month = currentDate.getMonth() + 1
@@ -14,6 +16,24 @@ if(month < 10) {
 const formatDate = `${month}/${currentDate.getFullYear()}`
 
 export default class MonthlyBudgetBar extends React.Component {
+
+    state = {
+        showTransactions: false
+    }
+
+    handleClick = () => {
+        this.setState(prevState => ({
+          showTransactions: !prevState.showTransactions
+        }))
+    }
+
+    showTransactions = () => {
+        if(this.state.showTransactions) {
+            return (
+                <TransactionTable budget={this.props.budget}/>
+            )
+        }
+    }
 
     formatTransactionDate = (dateObjFromRails) => {
         let transactionDate = new Date(dateObjFromRails)
@@ -64,6 +84,11 @@ export default class MonthlyBudgetBar extends React.Component {
                 <br></br>
                 <h1>{this.props.budget.name} Monthly Budget</h1>
                 <h1>{spend} / {this.props.budget.limit}</h1>
+                <Button inverted color="green"
+                onClick={() => this.handleClick()}>
+                    Show Transactions
+                </Button>
+                {this.showTransactions()}
             </div>
         )
     }

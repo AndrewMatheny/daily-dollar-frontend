@@ -22,7 +22,8 @@ export default class App extends React.Component {
     loggedIn: false,
     allBudgets: "",
     dailyBudgets: "",
-    currentDate: ""
+    currentDate: "",
+    currentMonth: ""
     }
 
     //hard-coded logged in to true to avoid logging in constantly during testing
@@ -36,9 +37,12 @@ export default class App extends React.Component {
         loggedIn: false,
         allBudgets: "",
         dailyBudgets: "",
-        currentDate: ""
+        currentDate: "",
+        currentMonth: ""
       })
     }
+
+    // changeCurrentDate
 
     setCurrentDate = () => {
       let dateObj = new Date()
@@ -46,8 +50,10 @@ export default class App extends React.Component {
       let month = dateObj.getMonth() + 1
       let day = dateObj.getDate()
       let date = `${month} / ${day} / ${year}`
+      let mdate = `${month} / ${year}`
       this.setState({
-          currentDate: date
+          currentDate: date,
+          currentMonth: mdate
       })
     }
 
@@ -121,7 +127,7 @@ export default class App extends React.Component {
                 />
               <Route
                 path="/monthly"
-                render={props => <MonthlyContainer {...props} allBudgets={this.state.allBudgets} currentDate={this.state.currentDate}/>}
+                render={props => <MonthlyContainer {...props} allBudgets={this.state.allBudgets} currentMonth={this.state.currentMonth}/>}
               />
               <Route
                 path="/addTransaction"

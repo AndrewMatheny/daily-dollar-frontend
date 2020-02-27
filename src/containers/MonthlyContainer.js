@@ -13,10 +13,10 @@ export default class MonthlyContainer extends React.Component {
     }
 
     showCurrentDate = () => {
-        let date = new Date()
+        // let date = new Date()
         return (
-            // <h1>{this.props.currentDate}</h1>
-            <h1>{`${date}`}</h1>
+            <h1>{this.props.currentMonth}</h1>
+            // <h1>{`${date}`}</h1>
         )
     }
 

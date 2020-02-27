@@ -1,4 +1,5 @@
 import React from 'react'
+import { Button } from 'semantic-ui-react'
 
 const currentDate = new Date()
 let month = currentDate.getMonth() + 1
@@ -13,6 +14,24 @@ if(day < 10) {
 const formatDate = `${month}/${day}/${currentDate.getFullYear()}`
 
 export default class BudgetBar extends React.Component {
+
+    state = {
+        showTransactions: false
+    }
+
+    handleClick = () => {
+        this.setState(prevState => ({
+          showTransactions: !prevState.showTransactions
+        }))
+    }
+
+    showTransactions = () => {
+        if(this.state.showTransactions) {
+            return (
+                <div>Transactions</div>
+            )
+        }
+    }
 
     formatTransactionDate = (dateObjFromRails) => {
         let transactionDate = new Date(dateObjFromRails)
@@ -65,6 +84,11 @@ export default class BudgetBar extends React.Component {
                 <br></br>
                 <h1>{this.props.budget.name} Daily Budget</h1>
                 <h1>{spend} / {((this.props.budget.limit)/30.4).toFixed(2)}</h1>
+                <Button inverted color="green"
+                onClick={() => this.handleClick()}>
+                    Show Transactions
+                </Button>
+                {this.showTransactions()}
             </div>
         )
     }
