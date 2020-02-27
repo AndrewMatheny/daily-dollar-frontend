@@ -1,5 +1,6 @@
 import React from 'react'
 import { Button } from 'semantic-ui-react'
+import TransactionTable from './TransactionTable'
 
 const currentDate = new Date()
 let month = currentDate.getMonth() + 1
@@ -16,7 +17,19 @@ const formatDate = `${month}/${day}/${currentDate.getFullYear()}`
 export default class BudgetBar extends React.Component {
 
     state = {
-        showTransactions: false
+        showTransactions: false,
+        dailyTransactions: ""
+    }
+
+    componentDidMount() {
+        this.setDailyTransactions()
+    }
+
+    setDailyTransactions = () => {
+        let dailyT = this.matchTransactionDate()
+        this.setState({
+            dailyTransactions: dailyT
+        })
     }
 
     handleClick = () => {
@@ -26,9 +39,12 @@ export default class BudgetBar extends React.Component {
     }
 
     showTransactions = () => {
+        let dailyBudget = { transactions: this.state.dailyTransactions}
         if(this.state.showTransactions) {
+            console.log("THIS BUDGET:", this.props.budget)
+            console.log("FORMATTED BUDGET:", dailyBudget)
             return (
-                <div>Transactions</div>
+                <TransactionTable budget={dailyBudget}/>
             )
         }
     }
