@@ -44,7 +44,7 @@ export default class BudgetBar extends React.Component {
             console.log("THIS BUDGET:", this.props.budget)
             console.log("FORMATTED BUDGET:", dailyBudget)
             return (
-                <TransactionTable budget={dailyBudget}/>
+                <TransactionTable budget={dailyBudget} deleteTransaction={this.props.deleteTransaction}/>
             )
         }
     }

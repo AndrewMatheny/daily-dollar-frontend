@@ -8,7 +8,7 @@ export default class MonthlyContainer extends React.Component {
     showBudgets = () => {
         console.log(this.props.allBudgets)
         return this.props.allBudgets.map(budget => {
-            return <MonthlyBudgetBar budget={budget}/>
+            return <MonthlyBudgetBar budget={budget} deleteTransaction={this.props.deleteTransaction}/>
         })
     }
 

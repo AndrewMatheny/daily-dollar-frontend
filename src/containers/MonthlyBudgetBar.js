@@ -30,7 +30,7 @@ export default class MonthlyBudgetBar extends React.Component {
     showTransactions = () => {
         if(this.state.showTransactions) {
             return (
-                <TransactionTable budget={this.props.budget}/>
+                <TransactionTable budget={this.props.budget} deleteTransaction={this.props.deleteTransaction}/>
             )
         }
     }

@@ -1,5 +1,5 @@
 import React from "react"
-import { Table } from 'semantic-ui-react'
+import { Table, Button } from 'semantic-ui-react'
 
 const TransactionTableRow = props => {
 
@@ -8,6 +8,9 @@ const TransactionTableRow = props => {
         <Table.Cell>{props.transaction.name}</Table.Cell>
         <Table.Cell>{props.transaction.amount}</Table.Cell>
         <Table.Cell>{props.transaction.date}</Table.Cell>
+        <Table.Cell>
+            <Button inverted color="red" onClick={() => props.deleteTransaction(props.transaction)}>Delete Transaction</Button>
+        </Table.Cell>
       </Table.Row>
   );
 };

@@ -104,6 +104,25 @@ export default class App extends React.Component {
       }, () => this.fetchBudgets(this.state.userId)) //hard coded to user 1 currently to have data to play with
     }
 
+    deleteTransaction = transaction => {
+      fetch(`http://localhost:3000/transactions/${transaction.id}`, {
+        method: 'DELETE',
+        headers: {
+          "Content-Type": "application/json"
+        }
+      }).then(res => res.json())
+      .then(() => this.fetchBudgets(this.state.userId))
+    }
+  
+    // deleteState = (selectedTrip) => {
+    //   let deleteTrip = this.state.trips.filter(trip => {
+    //     return trip.id !== selectedTrip.id
+    //   })
+    //   this.setState({
+    //     trips: deleteTrip
+    //   })
+    // }
+
     
 
     navigation = () => {
@@ -123,11 +142,11 @@ export default class App extends React.Component {
 
               <Route
                 path="/daily"
-                render={props => <DailyContainer {...props} dailyBudgets={this.state.dailyBudgets} currentDate={this.state.currentDate}/>}
+                render={props => <DailyContainer {...props} dailyBudgets={this.state.dailyBudgets} currentDate={this.state.currentDate} deleteTransaction={this.deleteTransaction}/>}
                 />
               <Route
                 path="/monthly"
-                render={props => <MonthlyContainer {...props} allBudgets={this.state.allBudgets} currentMonth={this.state.currentMonth}/>}
+                render={props => <MonthlyContainer {...props} allBudgets={this.state.allBudgets} currentMonth={this.state.currentMonth} deleteTransaction={this.deleteTransaction}/>}
               />
               <Route
                 path="/addTransaction"

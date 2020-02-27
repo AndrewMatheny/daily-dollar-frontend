@@ -8,7 +8,7 @@ class TransactionTable extends React.Component {
         let allTransactions = this.props.budget.transactions
             return allTransactions.map(transaction => {
                 return (
-                    <TransactionTableRow transaction={transaction} />
+                    <TransactionTableRow transaction={transaction} deleteTransaction={this.props.deleteTransaction}/>
                 )
             })
         }
@@ -24,6 +24,7 @@ class TransactionTable extends React.Component {
                     <Table.HeaderCell>Transaction</Table.HeaderCell>
                     <Table.HeaderCell>Amount</Table.HeaderCell>
                     <Table.HeaderCell>Date</Table.HeaderCell>
+                    <Table.HeaderCell></Table.HeaderCell>
                 </Table.Row>
             </Table.Header>
 
