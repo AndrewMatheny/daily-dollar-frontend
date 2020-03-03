@@ -2,18 +2,22 @@ import React from 'react'
 import { Button } from 'semantic-ui-react'
 import TransactionTable from './TransactionTable'
 
-// const currentDate = new Date()
-// let month = currentDate.getMonth() + 1
-// if(month < 10) {
-//     month = `0${month}`
-// }
-// const formatDate = `${month}/${currentDate.getFullYear()}`
 
 export default class MonthlyBudgetBar extends React.Component {
 
     state = {
-        showTransactions: false
+        showTransactions: false,
+        monthlyTransactions: ""
     }
+
+    componentDidMount() {
+        this.setMonthlyTransactions()
+    }
+
+    componentWillReceiveProps() {
+        this.setMonthlyTransactions()
+    }
+
 
     handleClick = () => {
         this.setState(prevState => ({
@@ -21,20 +25,24 @@ export default class MonthlyBudgetBar extends React.Component {
         }))
     }
 
+    setMonthlyTransactions = () => {
+        let monthlyT = this.matchTransactionDate()
+        this.setState({
+            monthlyTransactions: monthlyT
+        })
+    }
+
     showTransactions = () => {
         if(this.state.showTransactions) {
+            let monthlyBudget = { transactions: this.state.monthlyTransactions}
             return (
-                <TransactionTable budget={this.props.budget} deleteTransaction={this.props.deleteTransaction}/>
+                <TransactionTable budget={monthlyBudget} deleteTransaction={this.props.deleteTransaction}/>
             )
         }
     }
 
     formatTransactionDate = (dateObjFromRails) => {
         let transactionDate = new Date(dateObjFromRails)
-        // let tday = transactionDate.getDate()
-        // if(tday < 10) {
-        //     tday = `0${tday}`
-        // }
         let tmonth = transactionDate.getMonth() + 1
         if(tmonth < 10) {
             tmonth = `0${tmonth}`
