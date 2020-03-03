@@ -53,7 +53,22 @@ export default class App extends React.Component {
       let month = dateObj.getMonth() + 1
       let day = dateObj.getDate()
       let date = `${month}/${day}/${year}`
-      let mdate = `${month} / ${year}`
+      let mdate = `${month}/${year}`
+      this.setState({
+        currentDate: date,
+        currentMonth: mdate
+    })
+    }
+
+    changeMonth = (num) => {
+      let dateObj = this.state.currentDateObj
+      dateObj.setMonth(dateObj.getMonth() + num)
+      console.log(dateObj)
+      let year = dateObj.getFullYear()
+      let month = dateObj.getMonth() + 1
+      let day = dateObj.getDate()
+      let date = `${month}/${day}/${year}`
+      let mdate = `${month}/${year}`
       this.setState({
         currentDate: date,
         currentMonth: mdate
@@ -66,7 +81,7 @@ export default class App extends React.Component {
       let month = dateObj.getMonth() + 1
       let day = dateObj.getDate()
       let date = `${month}/${day}/${year}`
-      let mdate = `${month} / ${year}`
+      let mdate = `${month}/${year}`
       this.setState({
           currentDate: date,
           currentMonth: mdate,
@@ -150,7 +165,7 @@ export default class App extends React.Component {
                 />
               <Route
                 path="/monthly"
-                render={props => <MonthlyContainer {...props} allBudgets={this.state.allBudgets} currentMonth={this.state.currentMonth} deleteTransaction={this.deleteTransaction}/>}
+                render={props => <MonthlyContainer {...props} allBudgets={this.state.allBudgets} currentMonth={this.state.currentMonth} deleteTransaction={this.deleteTransaction} changeMonth={this.changeMonth} currentDateObj={this.state.currentDateObj}/>}
               />
               <Route
                 path="/addTransaction"
