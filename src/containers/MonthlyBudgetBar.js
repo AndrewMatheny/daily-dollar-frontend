@@ -1,6 +1,7 @@
 import React from 'react'
-import { Button, Progress, Segment } from 'semantic-ui-react'
+import { Button } from 'semantic-ui-react'
 import TransactionTable from './TransactionTable'
+import CustomBar from '../components/CustomBar'
 
 
 export default class MonthlyBudgetBar extends React.Component {
@@ -100,9 +101,10 @@ export default class MonthlyBudgetBar extends React.Component {
                 <br></br>
                 <h1>{this.props.budget.name} Monthly Budget</h1>
                 <h1>{spend} / {this.props.budget.limit}</h1>
-                <Segment inverted>
+                {/* <Segment inverted>
                     <Progress inverted value={spend} total={this.props.budget.limit} progress='ratio' color="green"/>
-                </Segment>
+                </Segment> */}
+                <CustomBar value={spend} total={this.props.budget.limit}/>
                 <Button inverted color="red" onClick={() => this.props.deleteBudget(this.props.budget)}>Delete Budget</Button>
                 <Button inverted color="green"
                 onClick={() => this.handleClick()}>
