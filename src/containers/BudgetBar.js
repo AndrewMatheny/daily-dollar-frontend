@@ -25,7 +25,11 @@ export default class BudgetBar extends React.Component {
     componentDidMount() {
         this.setDailyTransactions()
     }
-
+    
+    componentWillReceiveProps() {
+        this.setDailyTransactions()
+    }
+    
     setDailyTransactions = () => {
         let dailyT = this.matchTransactionDate()
         this.setState({
@@ -48,8 +52,9 @@ export default class BudgetBar extends React.Component {
     }
 
     showTransactions = () => {
-        let dailyBudget = { transactions: this.state.dailyTransactions}
+        
         if(this.state.showTransactions) {
+            let dailyBudget = { transactions: this.state.dailyTransactions}
             // console.log("THIS BUDGET:", this.props.budget)
             // console.log("FORMATTED BUDGET:", dailyBudget)
             return (
