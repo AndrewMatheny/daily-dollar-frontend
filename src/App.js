@@ -52,7 +52,7 @@ export default class App extends React.Component {
       let year = dateObj.getFullYear()
       let month = dateObj.getMonth() + 1
       let day = dateObj.getDate()
-      let date = `${month} / ${day} / ${year}`
+      let date = `${month}/${day}/${year}`
       let mdate = `${month} / ${year}`
       this.setState({
         currentDate: date,
@@ -65,7 +65,7 @@ export default class App extends React.Component {
       let year = dateObj.getFullYear()
       let month = dateObj.getMonth() + 1
       let day = dateObj.getDate()
-      let date = `${month} / ${day} / ${year}`
+      let date = `${month}/${day}/${year}`
       let mdate = `${month} / ${year}`
       this.setState({
           currentDate: date,
@@ -128,17 +128,6 @@ export default class App extends React.Component {
       }).then(res => res.json())
       .then(() => this.fetchBudgets(this.state.userId))
     }
-  
-    // deleteState = (selectedTrip) => {
-    //   let deleteTrip = this.state.trips.filter(trip => {
-    //     return trip.id !== selectedTrip.id
-    //   })
-    //   this.setState({
-    //     trips: deleteTrip
-    //   })
-    // }
-
-    
 
     navigation = () => {
       if(this.state.loggedIn) {
@@ -157,7 +146,7 @@ export default class App extends React.Component {
 
               <Route
                 path="/daily"
-                render={props => <DailyContainer {...props} dailyBudgets={this.state.dailyBudgets} currentDate={this.state.currentDate} deleteTransaction={this.deleteTransaction} changeDay={this.changeDay}/>}
+                render={props => <DailyContainer {...props} dailyBudgets={this.state.dailyBudgets} currentDate={this.state.currentDate} deleteTransaction={this.deleteTransaction} changeDay={this.changeDay} currentDateObj={this.state.currentDateObj}/>}
                 />
               <Route
                 path="/monthly"

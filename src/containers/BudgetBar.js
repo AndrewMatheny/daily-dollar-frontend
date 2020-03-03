@@ -2,17 +2,18 @@ import React from 'react'
 import { Button } from 'semantic-ui-react'
 import TransactionTable from './TransactionTable'
 
-const currentDate = new Date()
-let month = currentDate.getMonth() + 1
-if(month < 10) {
-    month = `0${month}`
-}
-let day = currentDate.getDate()
-if(day < 10) {
-    day = `0${day}`
-}
+// const currentDate = new Date()
+// let month = currentDate.getMonth() + 1
+// if(month < 10) {
+//     month = `0${month}`
+// }
+// let day = currentDate.getDate()
+// if(day < 10) {
+//     day = `0${day}`
+// }
 
-const formatDate = `${month}/${day}/${currentDate.getFullYear()}`
+// const formatDate = `${month}/${day}/${currentDate.getFullYear()}`
+
 
 export default class BudgetBar extends React.Component {
 
@@ -49,8 +50,8 @@ export default class BudgetBar extends React.Component {
     showTransactions = () => {
         let dailyBudget = { transactions: this.state.dailyTransactions}
         if(this.state.showTransactions) {
-            console.log("THIS BUDGET:", this.props.budget)
-            console.log("FORMATTED BUDGET:", dailyBudget)
+            // console.log("THIS BUDGET:", this.props.budget)
+            // console.log("FORMATTED BUDGET:", dailyBudget)
             return (
                 <TransactionTable budget={dailyBudget} deleteTransaction={this.filterDailyTransactions}/>
             )
@@ -76,6 +77,22 @@ export default class BudgetBar extends React.Component {
 
     matchTransactionDate = () => {
         let allTransactions = this.props.budget.transactions
+        console.log("CURRENTDATEOBJ:", this.props.currentDateObj)
+        let currentDate = this.props.currentDateObj
+        let month = currentDate.getMonth() + 1
+        if(month < 10) {
+            month = `0${month}`
+        }
+        let day = currentDate.getDate()
+        if(day < 10) {
+            day = `0${day}`
+        }
+
+        let formatDate = `${month}/${day}/${currentDate.getFullYear()}`
+        // console.log("FORMAT DATE", formatDate)
+        // console.log("PROP DATE", this.props.currentDate)
+
+        // let formatDate = this.props.currentDate
 
         // console.log(this.formatTransactionDate(allTransactions[1].date))
 
@@ -93,9 +110,9 @@ export default class BudgetBar extends React.Component {
             return parseFloat(transaction.amount)
         })
         //array of all amounts
-        console.log(spent)
+        // console.log(spent)
         let totalSpent = spent.reduce((a,b) => a + b, 0).toFixed(2)
-        console.log("TOTAL SPENT", totalSpent)
+        // console.log("TOTAL SPENT", totalSpent)
         return totalSpent
     }
 
