@@ -1,5 +1,6 @@
 import React from 'react'
 import BudgetBar from './BudgetBar'
+import { Button } from 'semantic-ui-react'
 
 
 export default class DailyContainer extends React.Component {
@@ -23,7 +24,9 @@ export default class DailyContainer extends React.Component {
         return (
             <div style={{color: "white", textAlign: "center"}}>
                 <br></br>
-                {this.showCurrentDate()}
+                <Button inverted color="yellow" onClick={() => this.props.changeDay(-1)}>Previous</Button>{this.showCurrentDate()}<Button inverted color="blue" onClick={() => this.props.changeDay(1)}>Next</Button>
+                
+                
                 <br></br>
                 <br></br>
                 {this.showBudgets()}

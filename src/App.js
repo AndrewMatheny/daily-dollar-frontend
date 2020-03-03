@@ -23,7 +23,8 @@ export default class App extends React.Component {
     allBudgets: "",
     dailyBudgets: "",
     currentDate: "",
-    currentMonth: ""
+    currentMonth: "",
+    currentDateObj: ""
     }
 
     //hard-coded logged in to true to avoid logging in constantly during testing
@@ -38,11 +39,26 @@ export default class App extends React.Component {
         allBudgets: "",
         dailyBudgets: "",
         currentDate: "",
-        currentMonth: ""
+        currentMonth: "",
+        currentDateObj: ""
       })
     }
 
     // changeCurrentDate
+    changeDay = (num) => {
+      let dateObj = this.state.currentDateObj
+      dateObj.setDate(dateObj.getDate() + num)
+      console.log(dateObj)
+      let year = dateObj.getFullYear()
+      let month = dateObj.getMonth() + 1
+      let day = dateObj.getDate()
+      let date = `${month} / ${day} / ${year}`
+      let mdate = `${month} / ${year}`
+      this.setState({
+        currentDate: date,
+        currentMonth: mdate
+    })
+    }
 
     setCurrentDate = () => {
       let dateObj = new Date()
@@ -53,7 +69,8 @@ export default class App extends React.Component {
       let mdate = `${month} / ${year}`
       this.setState({
           currentDate: date,
-          currentMonth: mdate
+          currentMonth: mdate,
+          currentDateObj: dateObj
       })
     }
 
@@ -89,9 +106,7 @@ export default class App extends React.Component {
       }
     }
 
-    // fetchDailyBudgets = (userId) => {
-      
-    // }
+
 
     setUserStates = (data) => {
       console.log(data)
@@ -142,7 +157,7 @@ export default class App extends React.Component {
 
               <Route
                 path="/daily"
-                render={props => <DailyContainer {...props} dailyBudgets={this.state.dailyBudgets} currentDate={this.state.currentDate} deleteTransaction={this.deleteTransaction}/>}
+                render={props => <DailyContainer {...props} dailyBudgets={this.state.dailyBudgets} currentDate={this.state.currentDate} deleteTransaction={this.deleteTransaction} changeDay={this.changeDay}/>}
                 />
               <Route
                 path="/monthly"
