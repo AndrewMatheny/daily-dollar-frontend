@@ -2,18 +2,6 @@ import React from 'react'
 import { Button } from 'semantic-ui-react'
 import TransactionTable from './TransactionTable'
 
-// const currentDate = new Date()
-// let month = currentDate.getMonth() + 1
-// if(month < 10) {
-//     month = `0${month}`
-// }
-// let day = currentDate.getDate()
-// if(day < 10) {
-//     day = `0${day}`
-// }
-
-// const formatDate = `${month}/${day}/${currentDate.getFullYear()}`
-
 
 export default class BudgetBar extends React.Component {
 
@@ -82,7 +70,7 @@ export default class BudgetBar extends React.Component {
 
     matchTransactionDate = () => {
         let allTransactions = this.props.budget.transactions
-        console.log("CURRENTDATEOBJ:", this.props.currentDateObj)
+        // console.log("CURRENTDATEOBJ:", this.props.currentDateObj)
         let currentDate = this.props.currentDateObj
         let month = currentDate.getMonth() + 1
         if(month < 10) {

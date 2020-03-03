@@ -58,7 +58,7 @@ export default class BudgetBar extends React.Component {
 
     calculateSpent = () => {
         let transactions = this.matchTransactionDate()
-        console.log(transactions)
+        // console.log(transactions)
     }
 
     render() {

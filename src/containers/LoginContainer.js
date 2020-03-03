@@ -7,9 +7,9 @@ export default class LoginContainer extends React.Component {
 
     responseFacebook = (res) => {
         console.log(res);
-        console.log(res.name)
-        console.log(res.email)
-        console.log(res.userID)
+        // console.log(res.name)
+        // console.log(res.email)
+        // console.log(res.userID)
         fetch(`http:localhost:3000/users`, {
           method: "POST",
           headers: {
@@ -26,9 +26,9 @@ export default class LoginContainer extends React.Component {
   
       responseGoogle = (res) => {
         console.log(res);
-        console.log(res.profileObj.name)
-        console.log(res.profileObj.email)
-        console.log(res.googleId)
+        // console.log(res.profileObj.name)
+        // console.log(res.profileObj.email)
+        // console.log(res.googleId)
         fetch(`http:localhost:3000/users`, {
           method: "POST",
           headers: {

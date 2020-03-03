@@ -43,7 +43,7 @@ export default class AddTransactionContainer extends React.Component {
       }
 
       handleBudgetChange = (e, value) => {
-          console.log(e.target)
+        //   console.log(e.target)
         this.setState({
             budget: value.value
         })

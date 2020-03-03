@@ -48,7 +48,7 @@ export default class App extends React.Component {
     changeDay = (num) => {
       let dateObj = this.state.currentDateObj
       dateObj.setDate(dateObj.getDate() + num)
-      console.log(dateObj)
+      // console.log(dateObj)
       let year = dateObj.getFullYear()
       let month = dateObj.getMonth() + 1
       let day = dateObj.getDate()
@@ -63,7 +63,7 @@ export default class App extends React.Component {
     changeMonth = (num) => {
       let dateObj = this.state.currentDateObj
       dateObj.setMonth(dateObj.getMonth() + num)
-      console.log(dateObj)
+      // console.log(dateObj)
       let year = dateObj.getFullYear()
       let month = dateObj.getMonth() + 1
       let day = dateObj.getDate()
@@ -124,7 +124,7 @@ export default class App extends React.Component {
 
 
     setUserStates = (data) => {
-      console.log(data)
+      // console.log(data)
       this.setState({
         userId: data.id,
         name: data.name,
@@ -145,7 +145,7 @@ export default class App extends React.Component {
     }
 
     deleteBudget = budget => {
-      console.log(budget)
+      // console.log(budget)
       fetch(`http://localhost:3000/budgets/${budget.id}`, {
         method: "DELETE",
         headers: {

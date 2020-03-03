@@ -32,11 +32,19 @@ export default class MonthlyBudgetBar extends React.Component {
         })
     }
 
+    filterMonthlyTransactions = transactionObj => {
+        this.props.deleteTransaction(transactionObj)
+        let newMonthly = this.state.monthlyTransactions.filter(transaction => transaction !== transactionObj)
+        this.setState({
+            monthlyTransactions: newMonthly
+        })
+    }
+
     showTransactions = () => {
         if(this.state.showTransactions) {
             let monthlyBudget = { transactions: this.state.monthlyTransactions}
             return (
-                <TransactionTable budget={monthlyBudget} deleteTransaction={this.props.deleteTransaction}/>
+                <TransactionTable budget={monthlyBudget} deleteTransaction={this.filterMonthlyTransactions}/>
             )
         }
     }
@@ -77,9 +85,9 @@ export default class MonthlyBudgetBar extends React.Component {
             return parseFloat(transaction.amount)
         })
         //array of all amounts
-        console.log(spent)
+        // console.log(spent)
         let totalSpent = spent.reduce((a,b) => a + b, 0).toFixed(2)
-        console.log("TOTAL SPENT", totalSpent)
+        // console.log("TOTAL SPENT", totalSpent)
         return totalSpent
     }
 
