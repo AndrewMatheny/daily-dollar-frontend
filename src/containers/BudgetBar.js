@@ -38,13 +38,21 @@ export default class BudgetBar extends React.Component {
         }))
     }
 
+    filterDailyTransactions = transactionObj => {
+        this.props.deleteTransaction(transactionObj)
+        let newDaily = this.state.dailyTransactions.filter(transaction => transaction !== transactionObj)
+        this.setState({
+            dailyTransactions: newDaily
+        })
+    }
+
     showTransactions = () => {
         let dailyBudget = { transactions: this.state.dailyTransactions}
         if(this.state.showTransactions) {
             console.log("THIS BUDGET:", this.props.budget)
             console.log("FORMATTED BUDGET:", dailyBudget)
             return (
-                <TransactionTable budget={dailyBudget} deleteTransaction={this.props.deleteTransaction}/>
+                <TransactionTable budget={dailyBudget} deleteTransaction={this.filterDailyTransactions}/>
             )
         }
     }
