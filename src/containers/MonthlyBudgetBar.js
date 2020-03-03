@@ -69,7 +69,6 @@ export default class MonthlyBudgetBar extends React.Component {
         })
 
         return filteredTransactions
-
     }
 
     calculateSpent = () => {
@@ -93,6 +92,7 @@ export default class MonthlyBudgetBar extends React.Component {
                 <br></br>
                 <h1>{this.props.budget.name} Monthly Budget</h1>
                 <h1>{spend} / {this.props.budget.limit}</h1>
+                <Button inverted color="red" onClick={() => this.props.deleteBudget(this.props.budget)}>Delete Budget</Button>
                 <Button inverted color="green"
                 onClick={() => this.handleClick()}>
                     Show Transactions

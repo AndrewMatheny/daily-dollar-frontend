@@ -58,7 +58,7 @@ export default class BudgetBar extends React.Component {
             // console.log("THIS BUDGET:", this.props.budget)
             // console.log("FORMATTED BUDGET:", dailyBudget)
             return (
-                <TransactionTable budget={dailyBudget} deleteTransaction={this.filterDailyTransactions}/>
+                <TransactionTable budget={dailyBudget} deleteTransaction={this.filterDailyTransactions} />
             )
         }
     }
@@ -130,6 +130,7 @@ export default class BudgetBar extends React.Component {
                 <br></br>
                 <h1>{this.props.budget.name} Daily Budget</h1>
                 <h1>{spend} / {((this.props.budget.limit)/30.4).toFixed(2)}</h1>
+                <Button inverted color="red" onClick={() => this.props.deleteBudget(this.props.budget)}>Delete Budget</Button>
                 <Button inverted color="green"
                 onClick={() => this.handleClick()}>
                     Show Transactions

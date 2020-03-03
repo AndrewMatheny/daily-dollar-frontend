@@ -112,12 +112,12 @@ export default class App extends React.Component {
         this.setState({
           allBudgets: prevAll,
           dailyBudgets: prevDaily
-        })
+        }, () => this.fetchBudgets(this.state.userId))
       } else {
         prevAll.push(this.state.allBudgets)
         this.setState({
           allBudgets: prevAll
-        })
+        }, () => this.fetchBudgets(this.state.userId))
       }
     }
 
@@ -144,6 +144,17 @@ export default class App extends React.Component {
       .then(() => this.fetchBudgets(this.state.userId))
     }
 
+    deleteBudget = budget => {
+      console.log(budget)
+      fetch(`http://localhost:3000/budgets/${budget.id}`, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json"
+        }
+      }).then(res => res.json())
+      .then(() => this.fetchBudgets(this.state.userId))
+    }
+
     navigation = () => {
       if(this.state.loggedIn) {
         // this.fetchUsersBudgets(this.state.userId)
@@ -161,11 +172,11 @@ export default class App extends React.Component {
 
               <Route
                 path="/daily"
-                render={props => <DailyContainer {...props} dailyBudgets={this.state.dailyBudgets} currentDate={this.state.currentDate} deleteTransaction={this.deleteTransaction} changeDay={this.changeDay} currentDateObj={this.state.currentDateObj}/>}
+                render={props => <DailyContainer {...props} dailyBudgets={this.state.dailyBudgets} currentDate={this.state.currentDate} deleteTransaction={this.deleteTransaction} changeDay={this.changeDay} currentDateObj={this.state.currentDateObj} deleteBudget={this.deleteBudget}/>}
                 />
               <Route
                 path="/monthly"
-                render={props => <MonthlyContainer {...props} allBudgets={this.state.allBudgets} currentMonth={this.state.currentMonth} deleteTransaction={this.deleteTransaction} changeMonth={this.changeMonth} currentDateObj={this.state.currentDateObj}/>}
+                render={props => <MonthlyContainer {...props} allBudgets={this.state.allBudgets} currentMonth={this.state.currentMonth} deleteTransaction={this.deleteTransaction} changeMonth={this.changeMonth} currentDateObj={this.state.currentDateObj} deleteBudget={this.deleteBudget}/>}
               />
               <Route
                 path="/addTransaction"

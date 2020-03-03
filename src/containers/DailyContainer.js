@@ -9,7 +9,7 @@ export default class DailyContainer extends React.Component {
     showBudgets = () => {
         // console.log(this.props.dailyBudgets)
         return this.props.dailyBudgets.map(budget => {
-            return <BudgetBar budget={budget} deleteTransaction={this.props.deleteTransaction} currentDateObj={this.props.currentDateObj}/>
+            return <BudgetBar budget={budget} deleteTransaction={this.props.deleteTransaction} currentDateObj={this.props.currentDateObj} deleteBudget={this.props.deleteBudget}/>
         })
     }
 
