@@ -5,9 +5,9 @@ import { Progress, Segment } from 'semantic-ui-react'
 const CustomBar = props => {
 
   return (
-      <div style={{textAlign: 'center'}}>
+      <div style={{display: 'inline-block', width: "80%"}}>
           <Segment inverted>
-                    <Progress inverted value={props.value} total={props.total} progress='ratio' color="green"/>
+                    <Progress inverted value={props.value} total={props.total} progress='ratio' color="green" size="large"/>
             </Segment>
       </div>
   );

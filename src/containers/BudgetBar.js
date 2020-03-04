@@ -120,6 +120,7 @@ export default class BudgetBar extends React.Component {
                 <h1>{this.props.budget.name} Daily Budget</h1>
                 <h1>{spend} / {((this.props.budget.limit)/30.4).toFixed(2)}</h1>
                 <CustomBar value={spend} total={((this.props.budget.limit)/30.4).toFixed(2)}/>
+                <br></br>
                 <Button inverted color="red" onClick={() => this.props.deleteBudget(this.props.budget)}>Delete Budget</Button>
                 <Button inverted color="green"
                 onClick={() => this.handleClick()}>

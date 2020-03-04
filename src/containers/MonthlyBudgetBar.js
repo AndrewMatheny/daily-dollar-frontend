@@ -105,6 +105,7 @@ export default class MonthlyBudgetBar extends React.Component {
                     <Progress inverted value={spend} total={this.props.budget.limit} progress='ratio' color="green"/>
                 </Segment> */}
                 <CustomBar value={spend} total={this.props.budget.limit}/>
+                <br></br>
                 <Button inverted color="red" onClick={() => this.props.deleteBudget(this.props.budget)}>Delete Budget</Button>
                 <Button inverted color="green"
                 onClick={() => this.handleClick()}>
