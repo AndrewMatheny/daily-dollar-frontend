@@ -7,7 +7,7 @@ import CustomBar from './CustomBar'
 export default class MonthlyBudgetBar extends React.Component {
 
     state = {
-        showTransactions: false,
+        showTransactions: false
         // monthlyTransactions: ""
     }
 

@@ -7,24 +7,23 @@ import CustomBar from './CustomBar'
 export default class BudgetBar extends React.Component {
 
     state = {
-        showTransactions: false,
-        dailyTransactions: ""
+        showTransactions: false
     }
 
-    componentDidMount() {
-        this.setDailyTransactions()
-    }
+    // componentDidMount() {
+    //     this.setDailyTransactions()
+    // }
     
-    componentWillReceiveProps() {
-        this.setDailyTransactions()
-    }
+    // componentWillReceiveProps() {
+    //     this.setDailyTransactions()
+    // }
     
-    setDailyTransactions = () => {
-        let dailyT = this.matchTransactionDate()
-        this.setState({
-            dailyTransactions: dailyT
-        })
-    }
+    // setDailyTransactions = () => {
+    //     let dailyT = this.matchTransactionDate()
+    //     this.setState({
+    //         dailyTransactions: dailyT
+    //     })
+    // }
 
     handleClick = () => {
         this.setState(prevState => ({
@@ -32,22 +31,22 @@ export default class BudgetBar extends React.Component {
         }))
     }
 
-    filterDailyTransactions = transactionObj => {
-        this.props.deleteTransaction(transactionObj)
-        let newDaily = this.state.dailyTransactions.filter(transaction => transaction !== transactionObj)
-        this.setState({
-            dailyTransactions: newDaily
-        })
-    }
+    // filterDailyTransactions = transactionObj => {
+    //     this.props.deleteTransaction(transactionObj)
+    //     let newDaily = this.state.dailyTransactions.filter(transaction => transaction !== transactionObj)
+    //     this.setState({
+    //         dailyTransactions: newDaily
+    //     })
+    // }
 
     showTransactions = () => {
         
         if(this.state.showTransactions) {
-            let dailyBudget = { transactions: this.state.dailyTransactions}
+            let dailyBudget = { transactions: this.matchTransactionDate()}
             // console.log("THIS BUDGET:", this.props.budget)
             // console.log("FORMATTED BUDGET:", dailyBudget)
             return (
-                <TransactionTable budget={dailyBudget} deleteTransaction={this.filterDailyTransactions} />
+                <TransactionTable budget={dailyBudget} deleteTransaction={this.props.deleteTransaction} />
             )
         }
     }
