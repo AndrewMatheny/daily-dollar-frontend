@@ -133,6 +133,7 @@ export default class App extends React.Component {
         name: data.name,
         email: data.email,
         outId: data.indiv,
+        income: data.income,
         loggedIn: true
       }, () => this.fetchBudgets(this.state.userId)) //hard coded to user 1 currently to have data to play with
     }
@@ -191,7 +192,7 @@ export default class App extends React.Component {
               />
               <Route
                 path="/profile"
-                render={props => <ProfileContainer {...props} userId={this.state.userId} name={this.state.name} email={this.state.email}/>}
+                render={props => <ProfileContainer {...props} userId={this.state.userId} name={this.state.name} email={this.state.email} updateUserState={this.setUserStates} income={this.state.income}/>}
               />
             </Router>
           </div>
