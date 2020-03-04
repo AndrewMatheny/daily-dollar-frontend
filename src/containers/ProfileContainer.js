@@ -37,30 +37,38 @@ export default class ProfileContainer extends React.Component {
       }
 
     render() {
-        return (
-            <div style={{color: "white", textAlign: "center", margin: '40px', padding: '3rem'}}>
-                <h1>PROFILE CONTAINER</h1>
-                <h1>{this.props.name}</h1>
-                <h2>{this.props.email}</h2>
-                <h2>{this.props.income}</h2>
-                <Container>
+        return ( 
+        <Container>
+            <div style={{margin: '40px', padding: '3rem'}}>
+
+                <div style={{color: "white", textAlign:"center"}}>
+                    <h1>PROFILE CONTAINER</h1>
+                    <h1>{this.props.name}</h1>
+                    <h2>{this.props.email}</h2>
+                    <h2>{this.props.income}</h2>
+
+                </div>
+
                     <Form inverted onSubmit={(e) =>this.handleSubmit(e)}>
-                        <Header textAlign='center' style={{color: "White"}}>Add/Update Monthly Income</Header>
-                        <Form.Group widths='equal'>
-                            <Form.Field
+                    {/* <Header textAlign='center' style={{color: "White"}}>{this.props.name}</Header>
+                    <Header textAlign='center' style={{color: "White"}}>{this.props.income}</Header> */}
+                        <Header textAlign='center' style={{color: "White", justifyContent: "center"}}>Add/Update Monthly Income</Header>
+                        <Form.Group style={{justifyContent: "center"}}>
+                            <Form.Input
                                 control={Input}
                                 name="incomeInput"
-                                label='Monthly Income'
+                                // label='Monthly Income'
                                 placeholder='Monthly Income - ex: $3000'
                                 value={this.state.incomeInput}
                                 onChange={this.handleChange}
                             />
-        
+                            <Form.Field control={Button}>Submit</Form.Field>
                         </Form.Group>
-                        <Form.Field control={Button}>Submit</Form.Field>
+                        
                     </Form>
-                </Container>
+                
             </div>
+            </Container>
         )
     }
 }

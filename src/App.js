@@ -180,7 +180,7 @@ export default class App extends React.Component {
                 />
               <Route
                 path="/monthly"
-                render={props => <MonthlyContainer {...props} allBudgets={this.state.allBudgets} currentMonth={this.state.currentMonth} deleteTransaction={this.deleteTransaction} changeMonth={this.changeMonth} currentDateObj={this.state.currentDateObj} deleteBudget={this.deleteBudget}/>}
+                render={props => <MonthlyContainer {...props} allBudgets={this.state.allBudgets} currentMonth={this.state.currentMonth} deleteTransaction={this.deleteTransaction} changeMonth={this.changeMonth} currentDateObj={this.state.currentDateObj} deleteBudget={this.deleteBudget} income={this.state.income}/>}
               />
               <Route
                 path="/addTransaction"
