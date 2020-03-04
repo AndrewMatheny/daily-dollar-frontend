@@ -9,6 +9,7 @@ import DailyContainer from './containers/DailyContainer'
 import MonthlyContainer from './containers/MonthlyContainer';
 import CreateBudgetContainer from './containers/CreateBudgetContainer';
 import AddTransactionContainer from './containers/AddTransactionContainer'
+import ProfileContainer from './containers/ProfileContainer'
 
 
 
@@ -19,6 +20,7 @@ export default class App extends React.Component {
     name: "",
     email: "",
     outId: "",
+    income: "",
     loggedIn: false,
     allBudgets: "",
     dailyBudgets: "",
@@ -35,6 +37,7 @@ export default class App extends React.Component {
         name: "",
         email: "",
         outId: "",
+        income: "",
         loggedIn: false,
         allBudgets: "",
         dailyBudgets: "",
@@ -185,6 +188,10 @@ export default class App extends React.Component {
               <Route
                 path="/createbudget"
                 render={props => <CreateBudgetContainer {...props} userId={this.state.userId} updateBudgetState={this.updateBudgetState}/>}
+              />
+              <Route
+                path="/profile"
+                render={props => <ProfileContainer {...props} userId={this.state.userId} name={this.state.name} email={this.state.email}/>}
               />
             </Router>
           </div>
