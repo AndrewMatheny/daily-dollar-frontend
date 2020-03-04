@@ -1,10 +1,25 @@
 import React from 'react'
 import MonthlyBudgetBar from './MonthlyBudgetBar'
 import { Button } from 'semantic-ui-react'
+import CustomBar from './CustomBar'
+
+// let total = []
 
 
 export default class MonthlyContainer extends React.Component {
 
+    state = {
+        spent: 0,
+        monthlyTotal: []
+    }
+
+    // gatherMonthly = () => {
+
+    // }
+
+    // getSingleTotal = amount => {
+    //     return amount
+    // }
 
     showBudgets = () => {
         // console.log(this.props.allBudgets)
@@ -21,6 +36,16 @@ export default class MonthlyContainer extends React.Component {
         )
     }
 
+    // getTotalSpent = (amount) => {
+    //     let prevSpent = this.state.spent
+    //     let newTotal = prevSpent + amount
+    //     this.setState({
+    //         spent: newTotal
+    //     })
+    // }
+
+
+
     render() {
         return (
             <div style={{color: "white", textAlign: "center"}}>
@@ -29,6 +54,7 @@ export default class MonthlyContainer extends React.Component {
                 <Button inverted color="yellow" onClick={() => this.props.changeMonth(-1)}>Previous</Button>
                 <Button inverted color="blue" onClick={() => this.props.changeMonth(1)}>Next</Button>
                 <br></br>
+                {/* <CustomBar total={this.props.income}/> */}
                 <br></br>
                 {this.showBudgets()}
                 <br></br>

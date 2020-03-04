@@ -77,7 +77,6 @@ export default class MonthlyBudgetBar extends React.Component {
         const filteredTransactions = allTransactions.filter(transaction => {
             return this.formatTransactionDate(transaction.date) === formatDate
         })
-
         return filteredTransactions
     }
 
@@ -90,8 +89,11 @@ export default class MonthlyBudgetBar extends React.Component {
         // console.log(spent)
         let totalSpent = spent.reduce((a,b) => a + b, 0).toFixed(2)
         // console.log("TOTAL SPENT", totalSpent)
+        
         return totalSpent
     }
+
+
 
     render() {
         // console.log(this.props.budget)

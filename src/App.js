@@ -29,6 +29,20 @@ export default class App extends React.Component {
     currentDateObj: ""
     }
 
+    componentDidMount() {
+      if(localStorage.getItem("user")) {
+        let user = JSON.parse(localStorage.getItem("user"))
+        this.setState({
+          userId: user.id,
+          name: user.name,
+          email: user.email,
+          outId: user.indiv,
+          income: user.income,
+          loggedIn: true
+        }, () => this.fetchBudgets(this.state.userId))
+      }
+    }
+
     //hard-coded logged in to true to avoid logging in constantly during testing
 
     logout = () => {
@@ -45,6 +59,7 @@ export default class App extends React.Component {
         currentMonth: "",
         currentDateObj: ""
       })
+      localStorage.clear()
     }
 
     // changeCurrentDate

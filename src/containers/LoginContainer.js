@@ -21,7 +21,11 @@ export default class LoginContainer extends React.Component {
             email: res.email
           })
         }).then(res => res.json())
-        .then(data => this.props.setUserStates(data))
+        .then(data => {
+            localStorage.clear()
+            localStorage.setItem("user", JSON.stringify(data))
+            this.props.setUserStates(data)
+        })
       }
   
       responseGoogle = (res) => {
@@ -40,7 +44,11 @@ export default class LoginContainer extends React.Component {
             email: res.profileObj.email
           })
         }).then(res => res.json())
-        .then(data => this.props.setUserStates(data))
+        .then(data => {
+            localStorage.clear()
+            localStorage.setItem("user", JSON.stringify(data))
+            this.props.setUserStates(data)
+        })
       }
       
       responseGoogleFailure = (response) => {
