@@ -1,7 +1,7 @@
 import React from 'react'
 import { Button } from 'semantic-ui-react'
 import TransactionTable from './TransactionTable'
-import CustomBar from '../components/CustomBar'
+import CustomBar from './CustomBar'
 
 
 export default class MonthlyBudgetBar extends React.Component {
@@ -18,6 +18,10 @@ export default class MonthlyBudgetBar extends React.Component {
     componentWillReceiveProps() {
         this.setMonthlyTransactions()
     }
+
+    // static getDerivedStateFromProps(props, state) {
+    //     this.setMonthlyTransactions()
+    // }
 
 
     handleClick = () => {
