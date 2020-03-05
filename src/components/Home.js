@@ -1,7 +1,7 @@
 import React from "react"
 // import { Link } from 'react-router-dom'
 import logo from '../images/DailyDollarNoBack.png';
-import { Container, Grid, Header, Divider, Icon, Image, List, Menu, Responsive, Segment, Sidebar, Visibility, Dropdown } from "semantic-ui-react"
+import { Container, Grid, Header, Divider, Image, List, Segment } from "semantic-ui-react"
 
 
 const Home = () => (
@@ -62,7 +62,7 @@ const Home = () => (
           </Grid>
   
           <Divider inverted section />
-          <Image centered size='mini' src='/logo.png' />
+          <Image centered size='mini' src={logo} />
           <List horizontal inverted divided link size='small'>
             <List.Item as='a' href='#'>
               Site Map

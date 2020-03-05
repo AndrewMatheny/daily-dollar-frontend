@@ -1,7 +1,7 @@
 import React from 'react'
 import MonthlyBudgetBar from './MonthlyBudgetBar'
 import { Button } from 'semantic-ui-react'
-import CustomBar from './CustomBar'
+// import CustomBar from './CustomBar'
 
 // let total = []
 
@@ -24,7 +24,7 @@ export default class MonthlyContainer extends React.Component {
     showBudgets = () => {
         // console.log(this.props.allBudgets)
         return this.props.allBudgets.map(budget => {
-            return <MonthlyBudgetBar budget={budget} deleteTransaction={this.props.deleteTransaction} currentDateObj={this.props.currentDateObj} deleteBudget={this.props.deleteBudget}/>
+            return <MonthlyBudgetBar key={budget.id} budget={budget} deleteTransaction={this.props.deleteTransaction} currentDateObj={this.props.currentDateObj} deleteBudget={this.props.deleteBudget}/>
         })
     }
 

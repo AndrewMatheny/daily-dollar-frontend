@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Menu, Sticky } from 'semantic-ui-react'
 import { NavLink } from 'react-router-dom'
+// import logo from '../images/DailyDollarNoBack.png'
 
 export default class NavBar extends Component {
   state = { activeItem: '' }
@@ -26,12 +27,6 @@ export default class NavBar extends Component {
     return (
       <Sticky>
         <Menu pointing secondary style={this.style}>
-          {/* <Menu.Item
-		  	  
-            name='home'
-            active={activeItem === 'home'}
-            onClick={this.handleItemClick}
-          /> */}
           <Menu.Item style={this.style}
             as={NavLink}
             to="/"
@@ -39,6 +34,11 @@ export default class NavBar extends Component {
             active={activeItem === 'home'}
             onClick={this.handleItemClick}
           />
+          {/* <Menu.Item>
+            <Link to="/">
+              <Image centered size='mini' src={logo} />
+            </Link>
+          </Menu.Item> */}
           <Menu.Item style={this.style}
             as={NavLink}
             to="/daily"
