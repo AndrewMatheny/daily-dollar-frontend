@@ -59,7 +59,7 @@ export default class ProfileContainer extends React.Component {
                                 control={Input}
                                 name="incomeInput"
                                 // label='Monthly Income'
-                                placeholder='Monthly Income - ex: $3000'
+                                placeholder='Ex: $3000'
                                 value={this.state.incomeInput}
                                 onChange={this.handleChange}
                             />

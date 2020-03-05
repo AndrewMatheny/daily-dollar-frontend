@@ -55,6 +55,7 @@ export default class MonthlyContainer extends React.Component {
                 <Button inverted color="blue" onClick={() => this.props.changeMonth(1)}>Next</Button>
                 <br></br>
                 {/* <CustomBar total={this.props.income}/> */}
+                <h2>Monthly Income - {this.props.income}</h2>
                 <br></br>
                 {this.showBudgets()}
                 <br></br>
