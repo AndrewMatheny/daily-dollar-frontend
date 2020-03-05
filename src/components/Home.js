@@ -16,9 +16,10 @@ const Home = () => (
 
         <h1>Welcome to Daily Dollar</h1>
         <br></br>
-        <p>This is a basic fixed menu template using fixed size containers.</p>
+        <p>The concept behind Daily Dollar is to help people budget certain categories on a day to day basis.</p>
+        <p>Giving people an amount that they can spend daily on lunch, shopping, entertainment, etc.</p>
         <p>
-          A text container is used for the main container, which is useful for single column layouts.
+          This can help people stay within their monthly allocations for different budgets.
         </p>
   
       </Container>
@@ -54,9 +55,9 @@ const Home = () => (
               </List>
             </Grid.Column>
             <Grid.Column width={7}>
-              <Header inverted as='h4' content='Footer Header' />
+              <Header inverted as='h4' content='About The Creator' />
               <p>
-                Extra space for a call to action inside the footer that could help re-engage users.
+                Drew Matheny is a full-stack developer in Seattle, WA.  
               </p>
             </Grid.Column>
           </Grid>

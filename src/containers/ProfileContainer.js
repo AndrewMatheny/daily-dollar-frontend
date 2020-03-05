@@ -42,10 +42,11 @@ export default class ProfileContainer extends React.Component {
             <div style={{margin: '40px', padding: '3rem'}}>
 
                 <div style={{color: "white", textAlign:"center"}}>
-                    <h1>PROFILE CONTAINER</h1>
+                    {/* <h1>PROFILE CONTAINER</h1> */}
                     <h1>{this.props.name}</h1>
                     <h2>{this.props.email}</h2>
-                    <h2>{this.props.income}</h2>
+                    <h2>Monthly Income - {this.props.income}</h2>
+                    <br></br>
 
                 </div>
 
