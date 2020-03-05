@@ -49,7 +49,7 @@ const Home = () => (
               <Header inverted as='h4' content='Links' />
               <List link inverted>
                 <List.Item as='a' href='https://github.com/AndrewMatheny'>Github</List.Item>
-                <List.Item as='a' href='https://medium.com/@androidmatheny'>Articles</List.Item>
+                <List.Item as='a' href='https://medium.com/@androidmatheny'>Medium</List.Item>
                 <List.Item as='a' href='https://www.linkedin.com/in/drew-matheny-84760b97/'>LinkedIn</List.Item>
                 {/* <List.Item as='a'>Link Four</List.Item> */}
               </List>
