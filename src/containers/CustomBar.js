@@ -7,31 +7,22 @@ class CustomBar extends React.Component {
     renderBar = () => {
         let value = this.props.value
         let total = this.props.total
+        let barColor = null
         if(value/total > 0.8) {
-            return (
-                <div style={{display: 'inline-block', width: "80%"}}>
-                <Segment inverted>
-                            <Progress inverted value={this.props.value} total={this.props.total} progress='ratio' color="red" size="large"/>
-                    </Segment>
-            </div>
-            )
+            barColor = "red"
         } else if(value/total <= 0.5) {
-            return (
-                <div style={{display: 'inline-block', width: "80%"}}>
-                <Segment inverted>
-                            <Progress inverted value={this.props.value} total={this.props.total} progress='ratio' color="green" size="large"/>
-                    </Segment>
-            </div>
-            )
+            barColor = "green"
         } else {
-            return (
-                <div style={{display: 'inline-block', width: "80%"}}>
-                <Segment inverted>
-                            <Progress inverted value={this.props.value} total={this.props.total} progress='ratio' color="yellow" size="large"/>
-                    </Segment>
-            </div>
-            )
+            barColor = "yellow"
         }
+
+        return(
+            <div style={{display: 'inline-block', width: "80%"}}>
+                <Segment inverted>
+                        <Progress inverted value={this.props.value} total={this.props.total} progress='ratio' color={barColor} size="large"/>
+                </Segment>
+            </div>
+        )
     }
 
     render() {
